@@ -1,0 +1,23 @@
+# MLLM Hallucination Evaluation Pipeline - Default Config
+# Override any field via CLI arguments (CLI takes precedence).
+
+benchmark:
+  name: "videomme"           # videomme | egoschema
+  video_dir: ""              # Path to directory containing video files
+  anno_path: null            # Path to a local parquet annotation file; null = auto-download from HF
+  split: "test"              # Dataset split
+
+model:
+  name: "qwen25_vl"          # See DEFAULT_MODEL_PATHS in main.py for all supported models
+  model_path: "Qwen/Qwen2.5-VL-7B-Instruct"
+  max_frames: 64             # Number of frames to sample per video (paper default)
+
+eval:
+  # baseline (ACC)                  | baseline_cot
+  # remove_correct (UDR)            | remove_correct_cot
+  # remove_correct_add_none (MCDR)  | remove_correct_add_none_cot
+  # remove_correct_force_none (OEDR)| remove_correct_force_none_cot
+  method: "baseline"
+  max_new_tokens: 2048       # Max tokens to generate
+  use_logprobs: false        # Extract per-option log-probabilities
+  output_dir: "outputs/"

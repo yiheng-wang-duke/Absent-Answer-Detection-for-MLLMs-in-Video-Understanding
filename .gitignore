@@ -1,0 +1,14 @@
+outputs/
+eval_results/
+inference_results/**/*_postprocessed/
+
+# Cache
+__pycache__/
+*.pyc
+.cache/
+*cache*/
+
+# Logs
+*.err
+*.out
+*.log
